@@ -9,12 +9,31 @@ const selected_list = [
     Poster:
       "https://image.tmdb.org/t/p/original/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg",
     rating: 8.4,
+    duration: 120.0,
+  },
+
+  {
+    Id: "120",
+    Title: "The Lord of the Rings",
+    Year: "2001",
+    Poster:
+      "https://image.tmdb.org/t/p/original/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg",
+    rating: 7.1,
+    duration: 140.0,
   },
 ];
+
+const getAverge = (array) =>
+  array.reduce((sum, value) => sum + value, 0) / array.length;
 
 function App() {
   const [movies, setMovies] = useState(movie_list);
   const [selectedMovies, setselectedMovies] = useState(selected_list);
+  const [isOpen, setIsOpen] = useState(true);
+
+  function handleSetIsOpen() {
+    setIsOpen(!isOpen);
+  }
 
   return (
     <>
@@ -35,22 +54,34 @@ function App() {
       <main className="container ">
         <div className="row ">
           <div className="col-md-9  ">
-            <div className="movie-list">
-              <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
-                {movie_list.map((movie) => (
-                  <div className="card" key={movie.Id}>
-                    <img src={movie.Poster} alt={movie.Title} />
-                    <div className="card-body">
-                      <h6>{movie.Title}</h6>
-                      <div className="d-flex align-items-center">
-                        <i className="bi bi-calendar2-date"></i>
-                        <span className="ms-2">{movie.Year}</span>
+            <button
+              className="btn btn-sm btn-outline-primary mb-2"
+              onClick={handleSetIsOpen}
+            >
+              {isOpen ? (
+                <i className="bi bi-chevron-up"></i>
+              ) : (
+                <i className="bi bi-chevron-down"></i>
+              )}
+            </button>
+            {isOpen && (
+              <div className="movie-list">
+                <div className="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+                  {movie_list.map((movie) => (
+                    <div className="card" key={movie.Id}>
+                      <img src={movie.Poster} alt={movie.Title} />
+                      <div className="card-body">
+                        <h6>{movie.Title}</h6>
+                        <div className="d-flex align-items-center">
+                          <i className="bi bi-calendar2-date"></i>
+                          <span className="ms-2">{movie.Year}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
           <div className="col-md-3  ">
             <div className="selected-move-list">
@@ -73,6 +104,25 @@ function App() {
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="card md-2">
+              <div className="card-body">
+                <h5>{selectedMovies.length} movies added to List</h5>
+                <div className="d-flex gap-3">
+                  <p className="">
+                    <i className="bi bi-star-fill text-warning "></i>
+                    <span className="ms-2 ">
+                      {getAverge(selectedMovies.map((m) => m.rating))}
+                    </span>
+                  </p>
+                  <p>
+                    <i className="bi bi-clock-fill "></i>
+                    <span className="ms-2">
+                      {getAverge(selectedMovies.map((m) => m.duration))}minutes
+                    </span>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
