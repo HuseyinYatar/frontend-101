@@ -29,3 +29,24 @@ export  const movie_list = [
       "https://image.tmdb.org/t/p/original/fNOH9f1aA7XRTzl1sAOx9iF553Q.jpg",
   },
 ];
+export const selected_list = [
+  {
+    Id: "769",
+    Title: "GoodFellas",
+    Year: "1990",
+    Poster:
+      "https://image.tmdb.org/t/p/original/aKuFiU82s5ISJpGZp7YkIr3kCUd.jpg",
+    rating: 8.4,
+    duration: 120.0,
+  },
+
+  {
+    Id: "120",
+    Title: "The Lord of the Rings",
+    Year: "2001",
+    Poster:
+      "https://image.tmdb.org/t/p/original/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg",
+    rating: 7.1,
+    duration: 140.0,
+  },
+];
