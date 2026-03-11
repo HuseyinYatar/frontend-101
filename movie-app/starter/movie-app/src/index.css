@@ -1,0 +1,9 @@
+.movie{
+    cursor:pointer;
+    box-shadow: -5px 0px 38px -7px rgba(24,21,21,0.78);
+}
+.selected
+{
+    background-color: rgb(180, 227, 211) !important; 
+    color: brown;
+}

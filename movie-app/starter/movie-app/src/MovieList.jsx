@@ -1,7 +1,12 @@
 import { useState } from "react";
 import { Movie } from "./Movie.jsx";
 
-function MovieList({ movies }) {
+function MovieList({
+  movies,
+  handleSelectedMovieById,
+  removeSelectedMovieById,
+  selectedMovieId,
+}) {
   const [isOpen, setIsOpen] = useState(true);
   function handleSetIsOpen() {
     setIsOpen(!isOpen);
@@ -22,7 +27,13 @@ function MovieList({ movies }) {
         <div className="movie-list">
           <div className="row row-cols-1 row-cols-md-3 row-cols-xl-4 g-4">
             {movies.map((movie) => (
-              <Movie movie={movie} key={movie.Id} />
+              <Movie
+                movie={movie}
+                key={movie.id}
+                handleSelectedMovieById={handleSelectedMovieById}
+                removeSelectedMovieById={removeSelectedMovieById}
+                selectedMovieId={selectedMovieId}
+              />
             ))}
           </div>
         </div>

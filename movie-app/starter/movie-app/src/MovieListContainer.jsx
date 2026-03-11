@@ -3,7 +3,12 @@ import MovieList from "./MovieList";
 import { Loading } from "./Loading";
 import { Error } from "./Error";
 
-export function MovieListContainer({ querry }) {
+export function MovieListContainer({
+  querry,
+  handleSelectedMovieById,
+  removeSelectedMovieById,
+  selectedMovieId,
+}) {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -11,7 +16,6 @@ export function MovieListContainer({ querry }) {
   const apiKey = "ac991bba0f906da5e26c1ce233ae8156";
   useEffect(
     function () {
-      console.log(querry);
       // 1. All logic goes inside the effect's function
       const getMovieList = async () => {
         try {
@@ -38,6 +42,10 @@ export function MovieListContainer({ querry }) {
         }
       };
 
+      if (querry.length < 3) {
+        setMovies([]);
+        return;
+      }
       getMovieList();
     },
     [querry],
@@ -46,7 +54,17 @@ export function MovieListContainer({ querry }) {
   return (
     <div>
       {error && <Error error={error} />}
-      {!error && (loading ? <Loading /> : <MovieList movies={movies} />)}
+      {!error &&
+        (loading ? (
+          <Loading />
+        ) : (
+          <MovieList
+            movies={movies}
+            handleSelectedMovieById={handleSelectedMovieById}
+            removeSelectedMovieById={removeSelectedMovieById}
+            selectedMovieId={selectedMovieId}
+          />
+        ))}
     </div>
   );
 }

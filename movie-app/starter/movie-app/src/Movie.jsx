@@ -1,6 +1,18 @@
-export function Movie({ movie }) {
+import "./index.css";
+
+export function Movie({
+  movie,
+  handleSelectedMovieById,
+  removeSelectedMovieById,
+  selectedMovieId,
+}) {
+  const isSelected = selectedMovieId === movie.id;
   return (
-    <div className="card g-3">
+    <div
+      // className={`card g-3 movie ${true ? "selected-movie " : ""}`}
+      className={`card g-3 movie ${isSelected ? "selected" : ""}`}
+      onClick={() => handleSelectedMovieById(movie.id)}
+    >
       <img
         className="pt-3"
         src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
