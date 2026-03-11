@@ -44,14 +44,16 @@ function Star({
 }
 
 export default function StartRating({
-  height = "41px",
-  colour = "#798418",
-  width = "41px",
+  height = "20px",
+  colour = "#d2e52c",
+  width = "20px",
   MaxRating = 5,
+  handleSetMovieRating,
+  movie,
 }) {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
-
+  useEffect(() => handleSetMovieRating(movie, rating), [rating]);
   return (
     <div
       className="container d-flex"
