@@ -1,0 +1,24 @@
+/* Make the dropdown container a grid */
+.dropdown-menu {
+  min-width: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  justify-content: center;
+  gap: 5px; /* Space between squares */
+}
+
+/* Force the buttons to be perfectly square */
+.theme-square {
+  width: 35px;
+  height: 35px;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 0;
+  border-radius: 4px; /* Slightly rounded corners look better, or use 0 for sharp edges */
+  transition: transform 0.2s;
+}
+
+.theme-square:hover {
+  transform: scale(1.1);
+  border: 2px solid #fff;
+}
