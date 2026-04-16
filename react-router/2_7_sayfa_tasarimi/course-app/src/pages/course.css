@@ -1,0 +1,63 @@
+/* The Card Container */
+.card {
+  display: flex; /* Aligns children side-by-side */
+  background: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  transition: transform 0.2s ease;
+  min-height: 250px; /* Gives the card a consistent height */
+}
+
+.card:hover {
+  transform: scale(1.01);
+}
+
+/* Left Side: The Image */
+.card img {
+  width: 50%; /* Splitting exactly from the middle */
+  object-fit: cover;
+  display: block;
+}
+
+/* Right Side: The Content */
+.card > div {
+  width: 50%; /* The other half of the split */
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers text vertically */
+}
+
+.card h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  color: rgb(194, 193, 193);
+}
+
+.card p {
+  color: white;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.card a {
+  align-self: flex-start; /* Keeps the button from stretching */
+  text-decoration: none;
+  background-color: #918c54;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Responsive: Stack them on small screens */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column;
+  }
+  .card img, .card > div {
+    width: 100%;
+  }
+}
