@@ -5,13 +5,16 @@ import {
 } from "@reduxjs/toolkit";
 import { request } from "../../apis/apiClient";
 
-const fetchProducts = createAsyncThunk("product/fetchProduct", async () => {
-  return await request.products.list();
-});
+export const fetchProducts = createAsyncThunk(
+  "product/fetchProduct",
+  async () => {
+    return await request.products.list();
+  },
+);
 
-const fetchProductsById = createAsyncThunk(
+export const fetchProductsById = createAsyncThunk(
   "product/fetchProductById",
-  async ({ id }) => {
+  async (id) => {
     return await request.products.details(id);
   },
 );
@@ -45,3 +48,6 @@ export const productSlice = createSlice({
     });
   },
 });
+
+export const { selectById: selectProductById, selectAll: selectAllProducts } =
+  productAdapter.getSelectors((state) => state.product);

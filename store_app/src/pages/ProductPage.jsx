@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCard from "../components/ProductCard";
 import { useLoaderData } from "react-router-dom";
 import { Grid } from "@mui/material";
 import { request } from "../apis/apiClient";
+import { useDispatch, useSelector } from "react-redux";
+import { selectAllProducts } from "../pages/product/productSlice";
+import { fetchProducts } from "../pages/product/productSlice";
 export default function ProductPage() {
-  const data = useLoaderData();
+  const dispatch = useDispatch();
+  const data = useSelector(selectAllProducts);
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
   return (
     <Grid container spacing={3}>
       {data.map((product) => (
